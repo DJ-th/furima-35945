@@ -4,13 +4,13 @@
 | Column             | Type     | Options                       |
 | ------------------ | ------   | -----------                   |
 | Nickname           | string   | null: false                   |
-| mail               | string   | null: false,  unique: true    |
+| email              | string   | null: false,  unique: true    |
 | encrypted_password | string   | null: false                   |
 | last_name          | string   | null: false                   |
 | first_name         | string   | null: false                   |
 | last_name_kana     | string   | null: false                   |
 | first_name_kana    | string   | null: false                   |
-| birthday           | data     | null: false                   |
+| birthday           | date     | null: false                   |
 
 ### Association
 
@@ -24,7 +24,7 @@
 | title                  | string              | null: false                   |
 | info                   | text                | null: false                   |
 | category_id            | integer             | null: false                   |
-| product_condition_id   | integer             | null: false                   |
+| product_condition_id   | string              | null: false                   |
 | shipping_cost_id       | integer             | null: false                   |
 | shipping_area_id       | integer             | null: false                   |
 | scheduled_delivery_id  | integer             | null: false                   |
@@ -55,7 +55,7 @@
 | Column       | Type             | Options                                         |
 | -------      | ----------       | ------------------------------                  |
 | user         | references       |  foreign_key: true                              |
-| items        | references       |  foreign_key: true                              |
+| item        | references       |  foreign_key: true                              |
 
 - has_one :address
 - belongs_to :item
