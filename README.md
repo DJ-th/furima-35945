@@ -10,7 +10,7 @@
 | first_name         | string   | null: false                   |
 | last_name_kana     | string   | null: false                   |
 | first_name_kana    | string   | null: false                   |
-| birthday           | reference| null: false, foreign_key: true|
+| birthday           | data     | null: false                   |
 
 ### Association
 
@@ -19,17 +19,17 @@
 
 ## items テーブル
 
-| Column              | Type                | Options                       |
-| ------              | ------              | -----------                   |
-| title               | string              | null: false                   |
-| text                | text                | null: false                   |
-| category            | references          | null: false  foreign_key: true|
-| product_condition   | references          | null: false  foreign_key: true|
-| shipping_cost       | references          | null: false  foreign_key: true|
-| shipping_area       | references          | null: false  foreign_key: true|
-| scheduled_delivery  | references          | null: false, foreign_key: true|
-| price               | integer             | null: false                   |
-| user                |references           | null: false, foreign_key: true| 
+| Column                 | Type                | Options                       |
+| ------                 | ------              | -----------                   |
+| title                  | string              | null: false                   |
+| text                   | text                | null: false                   |
+| category_id            | integer             | null: false                   |
+| product_condition_id   | integer             | null: false                   |
+| shipping_cost_id       | integer             | null: false                   |
+| shipping_area_id       | integer             | null: false                   |
+| scheduled_delivery_id  | integer             | null: false                   |
+| price                  | integer             | null: false                   |
+| user                   | references          | null: false, foreign_key: true| 
 ### Association
 
 - belongs_to :user
@@ -38,17 +38,17 @@
 
 ##　addresses テーブル
 
-| Column       | Type             | Options                                         |
-| -------      | ----------       | ------------------------------                  |
-| post_code    | string           | null: false                                     |
-| shipping_area| references       | null: false, foreign_key: true                  |
-| city_name    | string           | null: false                                     |
-| address      | string           | null: false                                     |
-| building_name| string           | null: false                                     |
-| phone_number | integer          | null: false                                     |
+| Column          | Type             | Options                                         |
+| -------         | ----------       | ------------------------------                  |
+| post_code       | string           | null: false                                     |
+| shipping_area_id| integer          | null: false                                     |
+| city_name       | string           | null: false                                     |
+| address         | string           | null: false                                     |
+| building_name   | string           |                                                 |
+| phone_number    | integer          | null: false                                     |
+| order           | references       | null: false, foreign_key: true                  |
 ### Association
-
-- has_one    :order
+- belongs_to   :order
 
 ## order テーブル
 
@@ -57,7 +57,7 @@
 | users        | references       | null: false, foreign_key: true                  |
 | items        | references       | null: false, foreign_key: true                  |
 
-- belongs_to :address
+- has_one :address
 - belongs_to :item
 - belongs_to :user 
 
