@@ -5,7 +5,7 @@
 | ------------------ | ------   | -----------                   |
 | Nickname           | string   | null: false                   |
 | mail               | string   | null: false                   |
-| password 　　　　　　| string   | null: false                   |
+| encrypted_password | string   | null: false                   |
 | last_name          | string   | null: false                   |
 | first_name         | string   | null: false                   |
 | last_name_kana     | string   | null: false                   |
@@ -59,4 +59,5 @@
 
 - belongs_to :address
 - belongs_to :item
-- belongs_to :user
+- belongs_to :user 
+
