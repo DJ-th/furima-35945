@@ -15,8 +15,7 @@
 ### Association
 
 - has_many  : items
-- has_many  : orders
-
+- has_many :orders
 ## items テーブル
 
 | Column                 | Type                | Options                       |
@@ -29,7 +28,7 @@
 | shipping_area_id       | integer             | null: false                   |
 | scheduled_delivery_id  | integer             | null: false                   |
 | price                  | integer             | null: false                   |
-| user                   | references          | foreign_key: true| 
+| user                   | references          | foreign_key: true             |
 ### Association
 
 - belongs_to :user
