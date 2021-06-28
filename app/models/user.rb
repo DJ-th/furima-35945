@@ -7,13 +7,13 @@ class User < ApplicationRecord
          has_many :orders
 
          validates :nickname, presence: true
-         with_options presence: true do
-         validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥々]/, message: "全角ひらがな、全角カタカナ、漢字で入力して下さい" }
-         validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥々]/, message: "全角ひらがな、全角カタカナ、漢字で入力して下さい" }
+         with_options format: { with: /\A[ぁ-んァ-ン一-龥々]/, message: "全角ひらがな、全角カタカナ、漢字で入力して下さい" } do
+         validates :last_name, presence: true
+         validates :first_name, presence: true
          end
-         with_options presence: true do
-         validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナで入力して下さい" }
-         validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナで入力して下さい" }
+         with_options format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナで入力して下さい" } do
+         validates :last_name_kana, presence: true
+         validates :first_name_kana, presence: true
          end
          validates :birthday, presence: true
 end
