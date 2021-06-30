@@ -16,11 +16,13 @@ class Item < ApplicationRecord
     validates :title 
     validates :info
     validates :image
+    with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :product_condition_id 
       validates :shipping_cost_id 
       validates :shipping_area_id 
       validates :scheduled_delivery_id
+    end
       with_options format: { with: /\A[0-9]+\z/ } do
         validates :price, numericality: { greater_than: 300, less_than: 9999999 } 
       end
