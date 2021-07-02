@@ -45,7 +45,7 @@
 | address         | string           | null: false                                     |
 | building_name   | string           |                                                 |
 | phone_number    | integer          | null: false                                     |
-| order           | references       | foreign_key: true                  |
+| order           | references       | foreign_key: true                               |
 ### Association
 - belongs_to   :order
 
@@ -54,7 +54,7 @@
 | Column       | Type             | Options                                         |
 | -------      | ----------       | ------------------------------                  |
 | user         | references       |  foreign_key: true                              |
-| item        | references       |  foreign_key: true                              |
+| item         | references       |  foreign_key: true                              |
 
 - has_one :address
 - belongs_to :item
