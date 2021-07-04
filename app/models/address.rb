@@ -7,6 +7,6 @@ class Address < ApplicationRecord
   #validates :city_name
   #validates :address
   #validates :phone_number
-end
+#end
 end
 
