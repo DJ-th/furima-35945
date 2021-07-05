@@ -7,7 +7,9 @@ class OrderAddress
   validates :post_code
     end
   validates :token
+  with_options numericality: { other_than: 1 } do
   validates :shipping_area_id
+  end
   validates :city_name
   validates :address
   validates :phone_number, length: { is: 11 } 
