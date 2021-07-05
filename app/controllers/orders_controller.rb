@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:index, :create]
   before_action :set_address, only: [:index, :create]
   def index
+    @order_address = OrderAddress.new
   end
   def create
     if @order_address.valid?
@@ -33,8 +34,6 @@ end
 def set_address
   if  current_user.id == @item.user_id || @item.order != nil  # "ログインしているユーザーが出品者と一緒"OR”売却済み”
     redirect_to root_path
-  else
-    @order_address = OrderAddress.new
   end
 end
 end

@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   end
   def destroy
       @item.destroy
+      redirect_to root_path
   end
   def create
     @item = Item.new(item_params)
