@@ -18,13 +18,15 @@ class ItemsController < ApplicationController
   end
   def update
     if @item.update(item_params)
+      if  current_user.id != @item.user_id || @item.order != nil
     redirect_to item_path(@item.id)
     else
       render :edit
     end
   end
+  end
   def destroy
-    if current_user.id == @item.user_id
+    if current_user.id != @item.user_id || @item.order != nil
       @item.destroy
       redirect_to root_path
     end

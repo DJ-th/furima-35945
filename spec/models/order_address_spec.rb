@@ -36,7 +36,7 @@ RSpec.describe OrderAddress, type: :model do
     @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Post code is invalid")
   end
-  it 'shipping_area_idが空では購入できない' do
+  it 'shipping_area_idで--を選択すると購入できない' do
     @order_address.shipping_area_id = ''
     @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Shipping area can't be blank")
@@ -54,12 +54,22 @@ RSpec.describe OrderAddress, type: :model do
   it 'phone_numberが空では購入できない' do
     @order_address.phone_number = ''
     @order_address.valid?
-    expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is the wrong length (should be 11 characters)")
+    expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
   end
   it 'phone_numberが11桁ないと購入できない' do
     @order_address.phone_number = '080123456789'
     @order_address.valid?
-    expect(@order_address.errors.full_messages).to include("Phone number is the wrong length (should be 11 characters)")
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+  end
+  it '電話番号が半角数字のみでないと登録できないこと' do
+    @order_address.phone_number = '０８０４４４４２２２２'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+  end
+  it '全角数字だと登録できないこと' do
+    @order_address.phone_number = '０８０４４４４２２２２'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
   end
     end
   end
