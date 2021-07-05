@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
 
-  before do
+  before do 
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user_id: user.id)
     @item = FactoryBot.build(:item)
   end
 
@@ -67,12 +69,12 @@ RSpec.describe Item, type: :model do
   it 'priceが300円よりも少なかったら出品できない'do
   @item.price = 50
   @item.valid?
-  expect(@item.errors.full_messages).to include("Price must be greater than 300")
+  expect(@item.errors.full_messages).to include("Price must be greater than 299")
   end
   it 'priceが9999999円よりも多かったら出品できない'do
   @item.price = 100000000
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+    expect(@item.errors.full_messages).to include("Price must be less than 10000000")
   end
   it 'priceが半角英数字混合では出品できない' do
     @item.price = 'ａａａ１１１'
