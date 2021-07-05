@@ -14,6 +14,10 @@ RSpec.describe OrderAddress, type: :model do
       it '全ての項目が存在すれば購入できる' do
         expect(@order_address).to be_valid
     end
+    it '建物名も空でも購入できる'do
+    @@order_address.building_name = ''
+    expect(@order_address).to be_valid
+  end
   end
     context '購入できない時' do
   it 'tokenが空だと購入できない' do
@@ -37,9 +41,9 @@ RSpec.describe OrderAddress, type: :model do
     expect(@order_address.errors.full_messages).to include("Post code is invalid")
   end
   it 'shipping_area_idで--を選択すると購入できない' do
-    @order_address.shipping_area_id = ''
+    @order_address.shipping_area_id = '1'
     @order_address.valid?
-    expect(@order_address.errors.full_messages).to include("Shipping area can't be blank")
+    expect(@order_address.errors.full_messages).to include("Shipping area must be other than 1")
   end
   it 'city_nameが空では購入できない' do
     @order_address.city_name = ''
@@ -68,6 +72,16 @@ RSpec.describe OrderAddress, type: :model do
   end
   it '全角数字だと登録できないこと' do
     @order_address.phone_number = '０８０４４４４２２２２'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+  end
+  it '数字のみでないと登録できないこと（英数字混合）' do
+    @order_address.phone_number = '０８０４４４４aaaa'
+    @order_address.valid?
+    expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+  end
+  it '数字のみでないと登録できないこと（ハイフンあり）' do
+    @order_address.phone_number = '080-4444-3333'
     @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Phone number is invalid")
   end
