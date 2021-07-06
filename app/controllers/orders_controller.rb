@@ -33,7 +33,7 @@ end
     end
 
 def set_address
-  if  current_user.id == @item.user_id || @item.order != nil  # "ログインしているユーザーが出品者と一緒"OR”売却済み”
+  if  current_user.id == @item.user_id || @item.order != nil  
     redirect_to root_path
   end
 end
